@@ -37,15 +37,15 @@ int main() {
 			patternLen = p.length();
 			bool found = false;
 			int ansX = -1 , ansY = -1;
-			lp (i , n) lp (j , m){ lp (k , 8){
+			lp (i , n) lp (j , m) lp (k , 8)
 						if (!found && search(i , j , k , 0)){
 
 							found = true;
 							ansX = i ;
 							ansY = j;
 						}
-					}
-			}
+					
+			
 
 			cout << (ansX + 1) << " " << (ansY + 1) << "\n";
 		}
