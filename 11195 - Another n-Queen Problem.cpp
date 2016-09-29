@@ -1,80 +1,48 @@
-#include <cstdlib>
-#include <iostream>
-#include <map>
-#include <stdio.h>
-#include <vector>
-#include<bits/stdc++.h>
-#include <ctype.h>
-#include <list>
-#include <stack>
-#include <queue>
-#include <string.h>
-#include <iomanip>
-#include <string>
-#include <algorithm>
-#include <cmath>
-#define _CRT_SECURE_NO_DEPRECATE
-#define INF 1000000000
-#define Set(a, s) memset(a, s, sizeof (a))
-#define forpos(i,j,k) for (int i=0 ; i<j ; i+=k)
-#define forneg(i,j,k) for (int i=j ;i>=0 ;i-=k)
-#define upcase(x) transform(x.begin(), x.end(), x.begin(), ::toupper)
-#define locase(x) transform(x.begin(), x.end(), x.begin(), ::tolower)
-#define PI 3.14159265358979323846
-#define VISITED 1
-#define UNVISITED -1
-#define pf printf
-#define SSTR( x ) dynamic_cast< std::ostringstream & >( \
-       ( std::ostringstream() << std::dec << x ) ).str()
-
-
+#include <bits/stdc++.h>
+#define FOR(x,y) for (int x = 0 ; x < y ; ++ x)
+#define FOR1(x,y,z) for (int x = y ; x < z ; ++ x)
+#define FOR2(x,y,z) for (int x = y ; x >= z ; -- x)
+#define pb(x) push_back(x)
+#define clr(x,y) memset (x , y , sizeof(x))
+#define omar cout<<"omar"<<endl;
+#define tr1(x) cout << x << endl;
+#define tr2(x , y) cout << x << " " << y <<  endl;
+#define SSTR( x ) static_cast< std::ostringstream & >( \
+        ( std::ostringstream() << std::dec << x ) ).str()
+#define fast 	ios_base::sync_with_stdio(0); cin.tie(0);
+#define inp freopen("input.txt", "r", stdin);
+#define out freopen("output.txt", "w", stdout);
 using namespace std;
 
 typedef long long ll;
-typedef std::pair<int,int> ii;
-typedef std::pair<std::string,int> si;
-typedef vector<int> vi;
-typedef vector<ii> vii;
 
-
-
-int N , cnt;
-bool rw [100] , leftDiag[100] , rightDiag[100];
-string board[15];
-
-void backtrack (int col)
-{
-
-       if(col == N){
-            ++ cnt;
-            return;
-       }
-
-       for(int i = 0 ; i < N ; ++i)
-           if(board[i][col] == '.' && ! (rw[i + 50] || leftDiag[col - i + 50] || rightDiag[col + i + 50]) )
-           {
-              rw[i + 50] = leftDiag[col - i + 50] = rightDiag[col + i + 50] =  true;
-
-              backtrack(col + 1);
-
-              rw[i + 50] = leftDiag[col - i + 50] = rightDiag[col + i + 50] =  false;
-            }
+string arr[16];
+bitset<16> row;
+bitset<80> ld;
+bitset<80> rd;
+int n ;
+ll cnt ;
+void solve (int col) {
+	if (col == n) {cnt ++ ; return ;}
+	FOR (i , n) if (arr[i][col] == '.' && !row[i] && !rd[i - col + 50] && !ld[i + col]) {
+		row[i] = rd[i - col + 50] = ld[i + col] = 1;
+		solve (col + 1);
+		row[i] = rd[i - col + 50] = ld[i + col] = 0;
+	}
 }
+int main() {
 
-int main()
-{
-   for(int T = 1 ;; ++T)
-        {
-            cin >> N;
-            if(N == 0) break;
-            cnt = 0 ;
+	fast
+	int tt = 1;
+	while ((cin >> n) && (n)) {
+		FOR (i , n) cin >> arr[i] ;
+		cnt = 0 ;
+		row.reset();
+		rd.reset();
+		ld.reset();
+		solve (0) ;
+		cout << "Case " << tt++ << ": " << cnt << "\n";
+	}
 
-            memset(rw , false , sizeof(rw));
-            memset(leftDiag , false , sizeof(leftDiag));
-            memset(rightDiag , false , sizeof(rightDiag));
-
-            for(int i = 0 ; i < N ; ++i) cin >> board[i];
-            backtrack(0);
-            printf("Case %d: %d\n" , T ,  cnt);
-        }
+	return 0;
 }
