@@ -48,7 +48,7 @@ int main() {
 		double best=1000023.0;
 		FOR1(i,1,N){
 			point cur=points[i];
-			while(left<i&&cur.x-points[left].x>best)activeSet.erase(points[left++]);
+			while(left<i&&cur.x-points[left].x>=best)activeSet.erase(points[left++]);
 			point lo(cur.x,cur.y-best),hi(cur.x,cur.y+best);
 			set<point,cmp>::iterator it=activeSet.lower_bound(lo),it2=activeSet.upper_bound(hi);
 			for(;it!=it2;it++){
