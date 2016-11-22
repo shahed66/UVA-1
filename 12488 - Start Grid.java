@@ -18,14 +18,13 @@ public class Main {
             for(int i = 0 ; i < N ; ++i) first.add(sc.nextInt());
             for(int i = 0 ; i < N ; ++i) second.add(sc.nextInt());
             int sum = 0;
-            while (first.size() > 0)
+            for(int j = 0 ; j < first.size() ; ++ j)
             {
                 int pos = 0;
                 for(int i = 0 ; i < second.size() ; ++i)
-                    if (second.get(i) == first.get(0)) pos = i;
+                    if (second.get(i) == first.get(j)) pos = i;
 
                 sum += (pos);
-                first.remove(0);
                 second.remove(pos);
             }
             out.printf("%d\n" , sum);
