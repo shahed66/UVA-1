@@ -23,11 +23,11 @@ public class Main {
             if (first) first = false;
             else out.print("\n");
             
-            for (int a = 0 ; a < k - 5 ; ++a)
-                for (int b = a + 1 ; b < k - 4 ; ++b)
-                    for (int c = b + 1 ; c < k - 3 ; ++c)
-                        for (int d = c + 1 ; d < k - 2 ; ++d)
-                            for (int e = d + 1 ; e < k - 1 ; ++e)
+            for (int a = 0 ; a < k ; ++a)
+                for (int b = a + 1 ; b < k ; ++b)
+                    for (int c = b + 1 ; c < k ; ++c)
+                        for (int d = c + 1 ; d < k ; ++d)
+                            for (int e = d + 1 ; e < k ; ++e)
                                 for (int f = e + 1 ; f < k ; ++ f)
                                     out.printf("%d %d %d %d %d %d\n" , arr[a] , arr[b] , arr[c] , arr[d] , arr[e] , arr[f]);
 
