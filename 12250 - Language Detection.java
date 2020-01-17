@@ -16,7 +16,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         PrintWriter out = new PrintWriter(System.out);
         StringBuilder sb = new StringBuilder();
-        for (int T = 1 ;; T ++)
+        for (int T = 1 ;T<6; T ++)
         {
             String x = sc.next();
             if (x.equals("#")) break;
